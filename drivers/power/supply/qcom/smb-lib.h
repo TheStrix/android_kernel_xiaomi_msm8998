@@ -241,7 +241,6 @@ struct smb_charger {
 	struct smb_iio		iio;
 	int			*debug_mask;
 	enum smb_mode		mode;
-	bool			external_vconn;
 	struct smb_chg_freq	chg_freq;
 	int			smb_version;
 
@@ -253,6 +252,7 @@ struct smb_charger {
 #ifdef CONFIG_FB
 	struct mutex		screen_lock;
 #endif
+	struct mutex		vconn_oc_lock;
 
 	/* power supplies */
 	struct power_supply		*batt_psy;
