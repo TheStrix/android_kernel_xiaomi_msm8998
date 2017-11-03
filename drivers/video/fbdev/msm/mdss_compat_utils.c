@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 2013-2017, The Linux Foundation. All rights reserved.
  * Copyright (C) 1994 Martin Schaller
+ * Copyright (C) 2017 XiaoMi, Inc.
  *
  * 2001 - Documented with DocBook
  * - Brad Douglas <brad@neruo.com>
