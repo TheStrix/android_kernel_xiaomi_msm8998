@@ -138,6 +138,16 @@ msm8998-qrd-overlay.dtbo-base :=  msm8998-qrd.dtb
 msm8998-qrd-vr1-overlay.dtbo-base :=  msm8998-qrd-vr1.dtb
 msm8998-qrd-skuk-overlay.dtbo-base :=  msm8998-qrd-skuk.dtb
 else
+ifeq ($(CONFIG_MACH_XIAOMI_MSM8998),y)
+dtb-$(CONFIG_MACH_XIAOMI_SAGIT) += \
+	sagit-msm8998-mtp.dtb \
+	sagit-msm8998-v2-mtp.dtb \
+	sagit-msm8998-v2.1-mtp.dtb
+dtb-$(CONFIG_MACH_XIAOMI_CHIRON) += \
+	chiron-msm8998-mtp.dtb \
+	chiron-msm8998-v2-mtp.dtb \
+	chiron-msm8998-v2.1-mtp.dtb
+else
 dtb-$(CONFIG_ARCH_MSM8998) += msm8998-sim.dtb \
 	msm8998-rumi.dtb \
 	msm8998-cdp.dtb \
@@ -175,6 +185,7 @@ dtb-$(CONFIG_ARCH_MSM8998) += msm8998-sim.dtb \
 	msm8998-9x55-rcm.dtb \
 	msm8998-9x55-cdp.dtb \
 	msm8998-9x55-mtp.dtb
+endif
 endif
 
 dtb-$(CONFIG_ARCH_MSMHAMSTER) += msmhamster-rumi.dtb
