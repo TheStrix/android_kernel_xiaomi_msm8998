@@ -113,6 +113,7 @@ struct msm_ispif_param_data_ext {
 	struct msm_ispif_right_param_entry right_entries[MAX_PARAM_ENTRIES];
 	uint32_t stereo_enable;
 	uint16_t line_width[VFE_MAX];
+	uint32_t reserved_param;
 };
 
 struct msm_ispif_param_data {
