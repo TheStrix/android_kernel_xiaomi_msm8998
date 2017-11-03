@@ -466,6 +466,7 @@ static int fib_nl_newrule(struct sk_buff *skb, struct nlmsghdr* nlh)
 	if (rule->tun_id)
 		ip_tunnel_need_metadata();
 
+	printk("fib_nl_newrule: %d %d %d\n", rule->iifindex, rule->oifindex, rule->table);
 	notify_rule_change(RTM_NEWRULE, rule, ops, nlh, NETLINK_CB(skb).portid);
 	flush_route_cache(ops);
 	rules_ops_put(ops);
@@ -474,6 +475,7 @@ static int fib_nl_newrule(struct sk_buff *skb, struct nlmsghdr* nlh)
 errout_free:
 	kfree(rule);
 errout:
+	printk("fib_nl_newrule met error: %d", err);
 	rules_ops_put(ops);
 	return err;
 }
@@ -498,6 +500,7 @@ static int fib_nl_delrule(struct sk_buff *skb, struct nlmsghdr* nlh)
 	}
 
 	err = nlmsg_parse(nlh, sizeof(*frh), tb, FRA_MAX, ops->policy);
+
 	if (err < 0)
 		goto errout;
 
@@ -590,6 +593,7 @@ static int fib_nl_delrule(struct sk_buff *skb, struct nlmsghdr* nlh)
 			}
 		}
 
+		printk("fib_nl_delrule: %d %d %d\n", rule->iifindex, rule->oifindex, rule->table);
 		notify_rule_change(RTM_DELRULE, rule, ops, nlh,
 				   NETLINK_CB(skb).portid);
 		fib_rule_put(rule);
@@ -600,6 +604,7 @@ static int fib_nl_delrule(struct sk_buff *skb, struct nlmsghdr* nlh)
 
 	err = -ENOENT;
 errout:
+	printk("fib_nl_delrule met error: %d", err);
 	rules_ops_put(ops);
 	return err;
 }
