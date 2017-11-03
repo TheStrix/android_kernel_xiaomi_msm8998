@@ -766,12 +766,13 @@ static int set_config(struct usb_composite_dev *cdev,
 	int			result = -EINVAL;
 	int			tmp;
 
+	INFO(cdev, "%s\n", __func__);
 	/*
 	 * ignore 2nd time SET_CONFIGURATION
 	 * only for same config value twice.
 	 */
 	if (cdev->config && (cdev->config->bConfigurationValue == number)) {
-		DBG(cdev, "already in the same config with value %d\n",
+		INFO(cdev, "already in the same config with value %d\n",
 				number);
 		return 0;
 	}
@@ -1956,7 +1957,7 @@ unknown:
 			return value;
 		}
 
-		VDBG(cdev,
+		INFO(cdev,
 			"non-core control req%02x.%02x v%04x i%04x l%d\n",
 			ctrl->bRequestType, ctrl->bRequest,
 			w_value, w_index, w_length);
