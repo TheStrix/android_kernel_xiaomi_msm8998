@@ -1,4 +1,5 @@
-/* Copyright (c) 2011, 2014-2016 The Linux Foundation. All rights reserved.
+/* Copyright (c) 2016, The Linux Foundation. All rights reserved.
+ * Copyright (C) 2017 XiaoMi, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -8,15 +9,24 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
  */
 
-#include <linux/module.h>
-#include <linux/kernel.h>
-#include <linux/init.h>
+#ifndef __SPK_ID_H_
+#define __SPK_ID_H_
 
-int msm_show_resume_irq_mask = 1;
+#include <linux/types.h>
+#include <linux/of.h>
 
-module_param_named(
-	debug_mask, msm_show_resume_irq_mask, int, S_IRUGO | S_IWUSR | S_IWGRP
-);
+#define PIN_PULL_DOWN		0
+#define PIN_PULL_UP		1
+#define PIN_FLOAT		2
+
+#define VENDOR_ID_NONE		0
+#define VENDOR_ID_AAC		1
+#define VENDOR_ID_GOER		2
+#define VENDOR_ID_SSI		3
+#define VENDOR_ID_UNKNOWN	4
+
+extern int spk_id_get_pin_3state(struct device_node *np);
+
+#endif
